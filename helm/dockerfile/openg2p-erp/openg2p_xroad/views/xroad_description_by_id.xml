@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Form View -->
+        <record model="ir.ui.view" id="xroad_description_id_form_view">
+            <field name="name">xroad.description.id.form</field>
+            <field name="model">xroad.description.id</field>
+            <field name="arch" type="xml">
+                <form string="Service Description by ID" create="0" edit="0" delete="0" import="0">
+                    <sheet>
+                        <group>
+                            <field name="xroad_config_name"/>
+                            <field name="descriptionId"/>
+                            <button string="Get Service Description" name="get_description_by_id" type="object"
+                                class="oe_highlight"/>
+                        </group>
+
+                        <group>
+                            <field name="description"/>
+                        </group>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Description</th>
+                                    <th>URL</th>
+                                </tr>
+                                <tr>
+                                    <td>Service</td>
+                                    <td>This service class features services that offer general information, administrative and support services to citizens and public and private organisations. These are services that are not connected to any specific service topic and for that reason cannot be included in the other main classes of the service classification."</td>
+                                    <td>http://uri.suomi.fi/codelist/ptv/ptvserclass2/code/P25</td>
+                                </tr><tr>
+                                    <td>Service</td>
+                                    <td>This service subclass mainly contains the services of the National Archives Service, the Provincial Archives subordinate to it as well as other statutory archives.</td>
+                                    <td>http://uri.suomi.fi/codelist/ptv/ptvserclass2/code/P25</td>
+                                </tr>
+                                <tr>
+                                    <td>Service</td>
+                                    <td>This service subclass features services where citizens, private organisations and government (state and local) officials can request public documents and other official information insomuch as they have a legal right to receive these materials.</td>
+                                    <td>http://uri.suomi.fi/codelist/ptv/ptvserclass2/code/P25</td>
+                                </tr>
+                                <tr>
+                                    <td>Service</td>
+                                    <td>This service subclass features services where citizens, private organisations and government (state and local) officials can request public documents and other official information insomuch as they have a legal right to receive these materials.</td>
+                                    <td>http://uri.suomi.fi/codelist/ptv/ptvserclass2/code/P25</td>
+                                </tr>
+                            </thead>
+                        </table>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

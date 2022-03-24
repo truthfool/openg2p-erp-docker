@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_openg2p_webhook"
+              name="Webhooks"
+              action="action_openg2p_webhook"
+              sequence="1"
+              web_icon="openg2p_webhook,static/description/icon.png" />
+</odoo>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Form View -->
+        <record model="ir.ui.view" id="xroad_description_form_view">
+            <field name="name">xroad.description.form</field>
+            <field name="model">xroad.description</field>
+            <field name="arch" type="xml">
+                <form string="General Descriptions" create="0" edit="0" delete="0" import="0">
+                    <sheet>
+                        <group>
+                            <field name="xroad_config_name"/>
+                            <field name="date"/>
+                            <field name="dateBefore"/>
+                            <field name="page"/>
+                            <button string="Get General Description" name="get_description" type="object"
+                                class="oe_highlight"/>
+                        </group>
+
+                        <group>
+                            <field name="description"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>
