@@ -21,7 +21,7 @@ http_port = {{ODOO_PORT_NUMBER}}
 ; limit_request = 8192
 ; https://www.odoo.com/forum/help-1/question/cpu-time-limit-exceeded-how-to-solve-it-87922
 limit_time_cpu = 90
-limit_time_real = 150000
+limit_time_real = 999999
 ; list_db = True
 ; log_db = False
 ; log_handler = [':INFO']

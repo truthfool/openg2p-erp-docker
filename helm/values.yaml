@@ -67,8 +67,8 @@ diagnosticMode:
 ##
 image:
   registry: docker.io
-  repository: bitnami/odoo
-  tag: 12.0
+  repository: shanidkh/bitnami-odoo
+  tag: bitnami
   ## Specify a imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
   ## ref: https://kubernetes.io/docs/user-guide/images/#pre-pulling-images
@@ -118,12 +118,12 @@ loadDemoData: false
 ##     sed -i s/;logfile/logfile/ /opt/bitnami/odoo/conf/odoo.conf
 ##     ...
 ##
-customPostInitScripts:
-  enable-modules.sh: |
-    #!/bin/bash
-    pip3 install cachetools==4.2.2 boto3==1.17.84 cerberus==1.3.4 pyquerystring==1.1 parse-accept-language==0.1.2 phonenumbers==8.12.28 zxcvbn==4.4.28 pyotp==2.6.0 cryptography==3.4.7 pandas==1.3.2 python-dotenv==0.19.0 numpy==1.21.2 kafka-python==2.0.2 dicttoxml==1.7.4
-    cp -r /mnt/extra-addons/* /opt/bitnami/odoo/addons
-    cp -r /opt/bitnami/python/lib/python3.8/site-packages/* /opt/bitnami/python/lib/python3.8/
+# customPostInitScripts:
+#   enable-modules.sh: |
+#     #!/bin/bash
+#     pip3 install cachetools==4.2.2 boto3==1.17.84 cerberus==1.3.4 pyquerystring==1.1 parse-accept-language==0.1.2 phonenumbers==8.12.28 zxcvbn==4.4.28 pyotp==2.6.0 cryptography==3.4.7 pandas==1.3.2 python-dotenv==0.19.0 numpy==1.21.2 kafka-python==2.0.2 dicttoxml==1.7.4
+#     cp -r /mnt/extra-addons/* /opt/bitnami/odoo/addons
+#     cp -r /opt/bitnami/python/lib/python3.8/site-packages/* /opt/bitnami/python/lib/python3.8/
 ## SMTP mail delivery configuration
 ## ref: https://github.com/bitnami/bitnami-docker-odoo/#smtp-configuration
 ## @param smtpHost SMTP server host
@@ -391,10 +391,7 @@ initContainers:
   - name: fetch-openg2p-addons
     image: busybox
     command: ["/bin/sh", "-c"]
-    args:
-      [
-        "wget --no-check-certificate -O openg2p-erp-community-addon-master.zip https://github.com/OpenG2P/openg2p-erp-community-addon/archive/master.zip && wget --no-check-certificate -O openg2p-erp-master.zip https://github.com/truthfool/openg2p-erp/archive/refs/heads/demo_ready_ishan.zip && unzip openg2p-erp-community-addon-master.zip -d ./tmp && unzip openg2p-erp-master.zip -d ./tmp && mv ./tmp/*/* /mnt/extra-addons",
-      ]
+    args: ["echo Init Container "]
     volumeMounts:
       - name: odoo-addons
         mountPath: "/mnt/extra-addons"
