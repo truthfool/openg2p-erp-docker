@@ -79,6 +79,12 @@ RUN curl -o odoo.deb -sSL http://nightly.odoo.com/${ODOO_VERSION}/nightly/deb/od
 COPY ./entrypoint.sh /
 COPY ./odoo.conf /etc/odoo/
 
+RUN ["chmod", "+x", "/entrypoint.sh"]
+
+ARG HOST=openg2p-base-postgresql
+ARG USER=openg2p
+ARG PASSWORD=openg2p
+ARG POSTGRES_DB=openg2p
 # Mount /var/lib/odoo to allow restoring filestore and /mnt/extra-addons for users addons
 RUN chown odoo /etc/odoo/odoo.conf \
     && mkdir -p /mnt/extra-addons \
@@ -86,10 +92,10 @@ RUN chown odoo /etc/odoo/odoo.conf \
 
 RUN apt-get update && apt-get install -y python3-pip && apt install --fix-broken -y && apt-get install build-essential libssl-dev libffi-dev python3-dev -y
 
-RUN pip3 install cachetools==3.1.1 boto3==1.17.84 cerberus==1.3.4 pyquerystring==1.1 parse-accept-language==0.1.2 phonenumbers==8.12.28 zxcvbn==4.4.28 pyotp==2.6.0 cryptography==3.3.2 pandas==0.24.2 python-dotenv==0.18.0 numpy==1.16.6 kafka-python==2.0.2 dicttoxml==1.7.4
+RUN pip3 install cachetools==3.1.1 boto3==1.16.63 cerberus==1.3.4 pyquerystring==1.1 parse-accept-language==0.1.2 phonenumbers==8.12.28 zxcvbn==4.4.28 pyotp==2.6.0 cryptography==3.2.1 pandas==0.24.2 python-dotenv==0.18.0 numpy==1.16.6 kafka-python==2.0.2 dicttoxml==1.7.4
 
-COPY ./openg2p-erp/* /mnt/extra-addons
-COPY ./openg2p-erp-community-addon/* /mnt/extra-addons
+COPY ./openg2p-erp/* /mnt/extra-addons/
+COPY ./openg2p-erp-community-addon/* /mnt/extra-addons/
 
 VOLUME ["/var/lib/odoo", "/mnt/extra-addons"]
 
