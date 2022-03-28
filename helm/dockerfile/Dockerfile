@@ -83,10 +83,19 @@ COPY ./odoo.conf /etc/odoo/
 RUN chown odoo /etc/odoo/odoo.conf \
     && mkdir -p /mnt/extra-addons \
     && chown -R odoo /mnt/extra-addons
+
+RUN apt-get update && apt-get install -y python3-pip && apt install --fix-broken -y && apt-get install build-essential libssl-dev libffi-dev python3-dev -y
+
+RUN pip3 install cachetools==3.1.1 boto3==1.17.84 cerberus==1.3.4 pyquerystring==1.1 parse-accept-language==0.1.2 phonenumbers==8.12.28 zxcvbn==4.4.28 pyotp==2.6.0 cryptography==3.3.2 pandas==0.24.2 python-dotenv==0.18.0 numpy==1.16.6 kafka-python==2.0.2 dicttoxml==1.7.4
+
+COPY ./openg2p-erp/* /mnt/extra-addons
+COPY ./openg2p-erp-community-addon/* /mnt/extra-addons
+
 VOLUME ["/var/lib/odoo", "/mnt/extra-addons"]
 
+
 # Expose Odoo services
-EXPOSE 8069 8071 8072
+EXPOSE 8069
 
 # Set the default config file
 ENV ODOO_RC /etc/odoo/odoo.conf
