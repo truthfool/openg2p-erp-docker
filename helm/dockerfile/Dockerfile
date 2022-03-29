@@ -24,9 +24,11 @@ RUN curl -sLO https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.
 COPY rootfs /
 RUN /opt/bitnami/scripts/odoo/postunpack.sh
 
-RUN apt-get update && apt-get install -y python3-pip && apt install --fix-broken -y && apt-get install build-essential libssl-dev libffi-dev python3-dev -y
+RUN apt-get update && apt-get install -y python3-pip && apt-get install -y python-pip && apt install --fix-broken -y && apt-get install build-essential libssl-dev libffi-dev python3-dev postgresql-contrib -y 
 
-RUN pip3 install cachetools==3.1.1 boto3==1.17.84 cerberus==1.3.4 pyquerystring==1.1 parse-accept-language==0.1.2 phonenumbers==8.12.28 zxcvbn==4.4.28 pyotp==2.6.0 cryptography==3.3.2 pandas==0.24.2 python-dotenv==0.18.0 numpy==1.16.6 kafka-python==2.0.2 dicttoxml==1.7.4 
+RUN pip install --upgrade pip
+
+RUN pip3 install --target=/opt/bitnami/python/lib/python3.8/site-packages cachetools==3.1.1 boto3==1.17.84 cerberus==1.3.4 pyquerystring==1.1 parse-accept-language==0.1.2 phonenumbers==8.12.28 zxcvbn==4.4.28 pyotp==2.6.0 cryptography==3.3.2 pandas==0.24.2 python-dotenv==0.18.0 numpy==1.16.6 kafka-python==2.0.2 dicttoxml==1.7.4 
 
 COPY ./openg2p-erp /opt/bitnami/odoo/addons
 COPY ./openg2p-erp-community-addon /opt/bitnami/odoo/addons
@@ -40,7 +42,8 @@ ENV BITNAMI_APP_NAME="odoo" \
     POSTGRESQL_HOST="postgresql" \
     POSTGRESQL_PORT_NUMBER="5432" \
     POSTGRESQL_ROOT_PASSWORD="" \
-    POSTGRESQL_ROOT_USER="postgres"
+    POSTGRESQL_ROOT_USER="postgres" \
+    PYTHONPATH="/opt/bitnami/python/lib/python3.8/site-packages"
 
 EXPOSE 8069
 
