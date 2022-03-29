@@ -68,6 +68,10 @@ RUN echo "deb http://deb.nodesource.com/node_8.x stretch main" > /etc/apt/source
 # Install Odoo
 ENV ODOO_VERSION 12.0
 ARG ODOO_RELEASE=20211006
+ENV HOST=openg2p-base-postgresql
+ENV USER=openg2p
+ENV PASSWORD=openg2p
+ENV POSTGRES_DB=openg2p
 ARG ODOO_SHA=f32dcd82b04e9a93e17a7d4b3ab471dc20408253
 RUN curl -o odoo.deb -sSL http://nightly.odoo.com/${ODOO_VERSION}/nightly/deb/odoo_${ODOO_VERSION}.${ODOO_RELEASE}_all.deb \
         && echo "${ODOO_SHA} odoo.deb" | sha1sum -c - \
@@ -81,10 +85,6 @@ COPY ./odoo.conf /etc/odoo/
 
 RUN ["chmod", "+x", "/entrypoint.sh"]
 
-ARG HOST=openg2p-base-postgresql
-ARG USER=openg2p
-ARG PASSWORD=openg2p
-ARG POSTGRES_DB=openg2p
 # Mount /var/lib/odoo to allow restoring filestore and /mnt/extra-addons for users addons
 RUN chown odoo /etc/odoo/odoo.conf \
     && mkdir -p /mnt/extra-addons \
