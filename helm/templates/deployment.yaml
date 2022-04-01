@@ -77,6 +77,8 @@ spec:
           volumeMounts:
             - name: odoo-data
               mountPath: /bitnami/odoo
+            - name: odoo-lib-data
+              mountPath: /var/lib/odoo
         {{- end }}
         {{- if .Values.initContainers }}
         {{- include "common.tplvalues.render" (dict "value" .Values.initContainers "context" $) | nindent 8 }}
