@@ -360,7 +360,7 @@ extraVolumes:
     emptyDir: {}
   - name: odoo-data-master
     persistentVolumeClaim:
-      claimName: openg2p-erp12-pv
+      claimName: openg2p-bitnami-odoo
 
 extraVolumeMounts:
   - name: odoo-addons 
@@ -387,17 +387,17 @@ sidecars: []
 ##    imagePullPolicy: Always
 ##    command: ['sh', '-c', 'copy addons from git and push to /bitnami/odoo/addons. Should work with extraVolumeMounts and extraVolumes']
 ##
-initContainers:
-  - name: fetch-openg2p-addons
-    image: busybox
-    command: ["/bin/sh", "-c"]
-    args: ["echo Init Container "]
-    volumeMounts:
-      - name: odoo-addons
-        mountPath: "/mnt/extra-addons"
-    securityContext:
-      allowPrivilegeEscalation: false
-      runAsUser: 0
+# initContainers:
+#   - name: fetch-openg2p-addons
+#     image: busybox
+#     command: ["/bin/sh", "-c"]
+#     args: ["echo Init Container "]
+#     volumeMounts:
+#       - name: odoo-addons
+#         mountPath: "/mnt/extra-addons"
+#     securityContext:
+#       allowPrivilegeEscalation: false
+#       runAsUser: 0
 
 ## @section Traffic Exposure Parameters
 ##
