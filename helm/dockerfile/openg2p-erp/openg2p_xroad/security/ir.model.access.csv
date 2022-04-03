@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_xroad_config,access.xroad.config,model_xroad_config,,1,1,1,1
+access_xroad_organizations,access.xroad.organizations,model_xroad_organizations,,1,1,1,1
+

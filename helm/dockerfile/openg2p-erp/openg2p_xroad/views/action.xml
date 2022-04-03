@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_xroad_config" model="ir.actions.act_window">
+        <field name="name">X-Road Configurations</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">xroad.config</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No X-Road Configurations !
+            </p>
+        </field>
+    </record>
+
+    <record id="action_xroad_organizations" model="ir.actions.act_window">
+        <field name="name">Organizations</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">xroad.organizations</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No Organizations !
+            </p>
+        </field>
+    </record>
+    <record id="action_xroad_country" model="ir.actions.act_window">
+        <field name="name">Country Details</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">xroad.country</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No Country Details !
+            </p>
+        </field>
+    </record>
+    <record id="action_xroad_language" model="ir.actions.act_window">
+        <field name="name">Language Details</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">xroad.language</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No Language Details !
+            </p>
+        </field>
+    </record>
+    <record id="action_xroad_municipality" model="ir.actions.act_window">
+        <field name="name">Municipality Details</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">xroad.municipality</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No Municipality Details !
+            </p>
+        </field>
+    </record>
+    <record id="action_xroad_postal" model="ir.actions.act_window">
+        <field name="name">Postal Details</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">xroad.postal</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No Postal Details !
+            </p>
+        </field>
+    </record>
+    <record id="action_xroad_description" model="ir.actions.act_window">
+        <field name="name">General Description</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">xroad.description</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No Description !
+            </p>
+        </field>
+    </record>
+    <record id="action_xroad_description_by_id" model="ir.actions.act_window">
+        <field name="name">General Description by ID</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">xroad.description.id</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No Description !
+            </p>
+        </field>
+    </record>
+    <record id="action_xroad_organizations" model="ir.actions.act_window">
+        <field name="name">Organizations</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">xroad.organizations</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No Organizations !
+            </p>
+        </field>
+    </record>
+    <record id="action_xroad_organization_id" model="ir.actions.act_window">
+        <field name="name">Organizations by ID</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">xroad.organization.id</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No Organizations !
+            </p>
+        </field>
+    </record>
+    <record id="action_xroad_service" model="ir.actions.act_window">
+        <field name="name">Services</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">xroad.service</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No Services !
+            </p>
+        </field>
+    </record>
+    <record id="action_xroad_service_id" model="ir.actions.act_window">
+        <field name="name">Service by ID</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">xroad.service.id</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No Services !
+            </p>
+        </field>
+    </record>
+</odoo>

@@ -27,3 +27,6 @@
 
 # Project-specific docker configurations
 /.docker/
+
+./helm/dockerfile/openg2p-erp/*
+./helm/dockerfile/openg2p-erp-community-addon/*

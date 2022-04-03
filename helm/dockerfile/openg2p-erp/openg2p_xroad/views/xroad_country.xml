@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Form View -->
+        <record model="ir.ui.view" id="xroad_country_form_view">
+            <field name="name">xroad.country.form</field>
+            <field name="model">xroad.country</field>
+            <field name="arch" type="xml">
+                <form string="Country Details" create="0" edit="0" delete="0" import="0">
+                    <sheet>
+                        <group>
+                            <field name="xroad_config_name"/>
+                            <button string="Get Country Details" name="get_country_codes" type="object"
+                                    class="oe_highlight"/>
+                        </group>
+
+                        <group>
+                            <field name="country_details"/>
+                        </group>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Code</th>
+                                    <th>Country</th>
+                                    <th>Language</th>
+                                </tr>
+                                <tr>
+                                    <td>AD</td>
+                                    <td>Andorra</td>
+                                    <td>en</td>
+                                </tr><tr>
+                                    <td>AE</td>
+                                    <td>United Arab Emirates</td>
+                                    <td>en</td>
+                                </tr>
+                                <tr>
+                                    <td>AF</td>
+                                    <td>Anguilla</td>
+                                    <td>sv</td>
+                                </tr>
+                                <tr>
+                                    <td>AL</td>
+                                    <td>Albanien</td>
+                                    <td>fi</td>
+                                </tr>
+                            </thead>
+                        </table>
+<!--                        <template id="xroad_country_template">-->
+<!--                            <table>-->
+<!--                                <thead>-->
+<!--                                    <tr>-->
+<!--                                        <th>Code</th>-->
+<!--                                        <th>Country</th>-->
+<!--                                        <th>Language</th>-->
+<!--                                    </tr>-->
+<!--                                </thead>-->
+<!--                                <tr t-foreach="values" t-as="value">-->
+<!--                                    <td>-->
+<!--                                        <t t-esc="value['code']"/>-->
+<!--                                    </td>-->
+<!--                                </tr>-->
+<!--                            </table>-->
+<!--                        </template>-->
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>
