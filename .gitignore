@@ -30,3 +30,6 @@
 
 ./helm/dockerfile/openg2p-erp/*
 ./helm/dockerfile/openg2p-erp-community-addon/*
+
+./dockerfile/openg2p-erp/*
+./dockerfile/openg2p-erp-community-addon/*

@@ -360,7 +360,7 @@ extraVolumes:
     emptyDir: {}
   - name: odoo-data-master
     persistentVolumeClaim:
-      claimName: openg2p-bitnami-odoo
+      claimName: openg2p-volume-claim
 
 extraVolumeMounts:
   - name: odoo-addons 
@@ -685,18 +685,19 @@ postgresql:
 ## @param externalDatabase.existingSecretPasswordKey Name of an existing secret key containing the non-root credentials
 ## @param externalDatabase.existingSecretPostgresPasswordKey Name of an existing secret key containing the admin credentials
 ##
-# externalDatabase:
-#   host: ""
-#   port: 5432
-#   user: bn_odoo
-#   password: ""
-#   database: bitnami_odoo
-#   create: true
-#   postgresqlPostgresUser: "postgres"
-#   postgresqlPostgresPassword: ""
-#   existingSecret: ""
-#   existingSecretPasswordKey: ""
-#   existingSecretPostgresPasswordKey: ""
+externalDatabase:
+  enabled : true
+  host: ""
+  port: 5432
+  user: bn_odoo
+  password: ""
+  database: bitnami_odoo
+  create: true
+  postgresqlPostgresUser: "postgres"
+  postgresqlPostgresPassword: ""
+  existingSecret: ""
+  existingSecretPasswordKey: ""
+  existingSecretPostgresPasswordKey: ""
 
 ## @section NetworkPolicy parameters
 ##
