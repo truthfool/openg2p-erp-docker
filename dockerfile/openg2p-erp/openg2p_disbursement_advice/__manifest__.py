@@ -13,7 +13,6 @@
     "data": [
         "data/openg2p_disbursement_advice_data.xml",
         "security/openg2p_banks_security.xml",
-        "security/ir.model.access.csv",
         "views/openg2p_beneficiary.xml",
         "views/openg2p_disbursement_advice.xml",
         "views/openg2p_disbursement_advice_line.xml",
@@ -33,8 +32,12 @@
         "views/openg2p_disbursement_batch_transaction.xml",
         "views/openg2p_disbursement_main.xml",
         "views/openg2p_disbursement_file.xml",
+        "security/ir.model.access.csv",
     ],
     "demo": [
         "data/demo.xml",
     ],
 }
+
+
+

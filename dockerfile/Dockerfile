@@ -24,7 +24,7 @@ RUN curl -sLO https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.
 COPY rootfs /
 RUN /opt/bitnami/scripts/odoo/postunpack.sh
 
-RUN apt-get update && apt-get install -y python3-pip && apt-get install -y python-pip && apt install --fix-broken -y && apt-get install build-essential libssl-dev libffi-dev python3-dev postgresql-contrib -y 
+RUN apt-get update && apt-get install -y python3-pip && apt-get install -y python-pip && apt install --fix-broken -y && apt-get install build-essential libssl-dev libffi-dev python3-dev postgresql-contrib libatlas-base-dev -y 
 
 RUN pip install --upgrade pip
 
