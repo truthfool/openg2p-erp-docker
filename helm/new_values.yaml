@@ -1,0 +1,214 @@
+image:
+  registry: docker.io
+  repository: shanidkh/bitnami-odoo
+  tag: openg2p-odoo14
+  pullPolicy: Always
+  debug: false
+
+
+odooEmail: admin
+odooPassword: "admin"
+odooSkipInstall: true
+loadDemoData: false
+
+
+customPostInitScripts:
+  install-openg2p-modules.sh: |
+    #!/bin/bash
+    cp -rf /tmp/openg2p-erp*/* /bitnami/odoo/addons
+    TO_REPLACE=$(grep -i limit_time_real /opt/bitnami/odoo/conf/odoo.conf); sed -i "s/$TO_REPLACE/limit_time_real = $LIMIT_TIME_REAL/g" /opt/bitnami/odoo/conf/odoo.conf
+    TO_REPLACE=$(grep -i list_db /opt/bitnami/odoo/conf/odoo.conf); sed -i "s/$TO_REPLACE/list_db = False/g" /opt/bitnami/odoo/conf/odoo.conf
+    if [[ ! -f "/bitnami/odoo/.openg2p_modules_initialized" ]]; then
+      chown -R odoo:root /bitnami/odoo/
+      . /opt/bitnami/odoo/venv/bin/activate &&
+      /opt/bitnami/odoo/bin/odoo \
+          --config /opt/bitnami/odoo/conf/odoo.conf \
+          -i base,odk-connector,openg2p_package --without-demo=all \
+          --stop-after-init &&
+      deactivate
+      chown -R odoo:root /bitnami/odoo/
+      touch /bitnami/odoo/.openg2p_modules_initialized
+    fi
+existingSecret: ""
+
+smtpExistingSecret: ""
+
+allowEmptyPassword: false
+
+command: []
+
+args: []
+
+extraEnvVars:
+- name: ODOO_SKIP_MODULES_UPDATE
+  value: "true"
+- name: SHOULD_DEMO_AUTH
+  value: "false"
+- name: DEMO_AUTHENTICATE_URL
+  value: "http://openg2p-mosip-mediator/demoAuth"
+- name: LIMIT_TIME_REAL
+  value: "10000"
+
+
+replicaCount: 1
+
+containerPorts:
+  http: 8069
+
+resources:
+  limits: {}
+  requests:
+    memory: 512Mi
+    cpu: 300m
+
+podSecurityContext:
+  enabled: false
+  fsGroup: 1001
+
+containerSecurityContext:
+  enabled: false
+  runAsUser: 1001
+
+livenessProbe:
+  enabled: false
+  path: /
+  initialDelaySeconds: 600
+  periodSeconds: 30
+  timeoutSeconds: 5
+  failureThreshold: 6
+  successThreshold: 1
+
+readinessProbe:
+  enabled: false
+
+customReadinessProbe:
+  tcpSocket:
+    port: 8069
+  initialDelaySeconds: 30
+  periodSeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 6
+  successThreshold: 1
+
+startupProbe:
+  enabled: false
+  path: 
+  initialDelaySeconds: 300
+  periodSeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 6
+  successThreshold: 1
+
+podAntiAffinityPreset: soft
+
+updateStrategy:
+  type: RollingUpdate
+  rollingUpdate: {}
+
+extraVolumes: []
+
+extraVolumeMounts: []
+
+sidecars: []
+
+initContainers: []
+
+service:
+  type: ClusterIP
+
+ingress:
+  enabled: false
+  ingressClassName: ""
+  pathType: ImplementationSpecific
+  apiVersion: ""
+  hostname: odoo.local
+  path: /
+  annotations: {}
+  tls: false
+  selfSigned: false
+  extraHosts: []
+  extraPaths: []
+  extraTls: []
+  secrets: []
+  extraRules: []
+
+persistence:
+  enabled: true
+  accessModes:
+    - ReadWriteOnce
+  accessMode: ReadWriteOnce
+  size: 10Gi
+
+volumePermissions:
+  enabled: false
+  resources:
+    limits: {}
+    requests: {}
+  containerSecurityContext:
+    enabled: true
+    runAsUser: 0
+
+serviceAccount:
+  create: true
+  name: ""
+  automountServiceAccountToken: false
+  annotations: {}
+
+pdb:
+  create: false
+  minAvailable: 1
+  maxUnavailable: ""
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 11
+  targetCPU: 50
+  targetMemory: 50
+
+postgresql:
+  enabled: true
+  auth:
+    username: openg2p
+    password: "openg2p"
+    database: openg2p
+    existingSecret: ""
+  architecture: standalone
+  primary:
+    initdb:
+      scripts:
+        create_trgm_extension.sh: |
+          #!/bin/bash
+          PGPASSWORD=$POSTGRES_POSTGRES_PASSWORD psql -U postgres -d $POSTGRES_DB -c "alter role $POSTGRES_USER superuser;"
+          PGPASSWORD=$POSTGRES_PASSWORD psql -U $POSTGRES_USER -d $POSTGRES_DB -c "create extension pg_trgm;"
+
+externalDatabase:
+  host: ""
+  port: 5432
+  user: bn_odoo
+  password: ""
+  database: bitnami_odoo
+  create: true
+  postgresqlPostgresUser: "postgres"
+  postgresqlPostgresPassword: ""
+  existingSecret: ""
+  existingSecretPasswordKey: ""
+  existingSecretPostgresPasswordKey: ""
+
+networkPolicy:
+  enabled: false
+  ingress:
+    enabled: false
+    podSelector: {}
+    namespaceSelector: {}
+  ingressRules:
+    backendOnlyAccessibleByFrontend: false
+    customBackendSelector: {}
+    accessOnlyFrom:
+      enabled: false
+      namespaceSelector: {}
+      podSelector: {}
+    customRules: {}
+  egressRules:
+    denyConnectionsToExternal: false
+    customRules: {}

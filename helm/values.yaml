@@ -1,7 +1,7 @@
 image:
   registry: docker.io
   repository: shanidkh/bitnami-odoo
-  tag: openg2p-custom
+  tag: openg2p-odoo12
   # repository: bitnami/odoo
   # tag: 12.0.20210915-debian-10-r40
   pullPolicy: Always
@@ -173,9 +173,9 @@ persistence:
 postgresql:
   enabled: true
   postgresqlUsername: "openg2p"
-  postgresqlPassword: ""
+  postgresqlPassword: "password123"
+  postgresqlPostgresPassword: "password456"
   postgresqlDatabase: openg2p
-  existingSecret: ""
   persistence:
     enabled: true
     accessMode: ReadWriteOnce
@@ -185,4 +185,8 @@ postgresql:
       #!/bin/bash
       PGPASSWORD=$POSTGRES_POSTGRES_PASSWORD psql -U postgres -d $POSTGRES_DB -c "alter role $POSTGRES_USER superuser;"
       PGPASSWORD=$POSTGRES_PASSWORD psql -U $POSTGRES_USER -d $POSTGRES_DB -c "create extension pg_trgm;"
+      
+global:
+  postgresql:
+    postgresqlPassword: "admin123"
       
